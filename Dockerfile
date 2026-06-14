@@ -1,9 +1,6 @@
 # Production Dockerfile for CarbonSphere on Google Cloud Run
 FROM node:20-alpine
 
-# Set environment
-ENV NODE_ENV=production
-
 WORKDIR /app
 
 # Copy dependency manifests
@@ -23,6 +20,9 @@ RUN npm install -g serve
 
 # Expose port
 EXPOSE 8080
+
+# Set environment for production runtime
+ENV NODE_ENV=production
 
 # Serve static site on port 8080 (Cloud Run default)
 CMD ["serve", "-s", "dist", "-l", "8080"]
